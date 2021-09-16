@@ -5,12 +5,30 @@
     box-sizing: border-box;
 }
 
+html{
+    font-size: 93.75%;
+}
+
 :root{
     --dark-blue: #363f5f;
+    --green: #49AA26;
 }
+
 body{
     background: #f0f2f5;
     font-family: "Poppins", sans-serif;
+}
+
+.sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .container{
@@ -27,16 +45,57 @@ h2{
     font-weight: 400;
 }
 
+/* Links e buttons */
+a{
+    color:#49AA26;
+    text-decoration: none;
+
+}
+
+a:hover{
+    color:#3dd705;
+}
+
+.button.new{
+    display: inline-block;
+    margin-bottom: .8rem;
+}
+
+button{
+    width: 100%;
+    height: 50px;
+    border: none !important;
+    color: #fff;
+    background: var(--green);
+    padding: 0;
+    border-radius: .25rem;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #0bce25;
+}
+
+.button.cancel{
+    color:#e92929;
+    border: 2px #e92929 solid;
+    border-radius: 0.25rem;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    opacity: 0.6;
+}
+
+.button.cancel:hover{
+    opacity: 1;
+}
+
 /* Header */
 header{
     background: #2D4A22;
     padding: 2rem 0 10rem;
     text-align: center;
-}
-
-#logo{
-    color: #fff;
-    font-weight: 100;
 }
 
 /* Balance */
@@ -50,7 +109,7 @@ header{
 }
 
 /* Cards */
-.card{
+#balance .card{
     background: #fff;
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
@@ -58,29 +117,37 @@ header{
     color: var(--dark-blue);
 }
 
-.card h3{
+#balance .card h3{
     font-weight: normal;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.card p{
-    font-size: 2rem;
+#balance .card p{
+    font-size: 1.5rem;
     line-height: 3rem;
     margin-top: 1rem;
 }
 
-.card.total{
+#balance .card.total{
     background: #49AA26;
     color: #fff;
 }
 
 /* table */
+#transaction{
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
 #data-table{
     width: 100%;
     border-spacing: 0 0.5rem;
 }
 
-table th{
+#transaction table th{
     background: #fff;
 
     color: var(--dark-blue);
@@ -88,40 +155,123 @@ table th{
     text-align: left;
 }
 
-table td{
+#transaction table td{
     background: #fff;
     padding: 1rem 2rem;
 }
 
-table tr{
+#transaction table tr{
     opacity: 0.7;
 }
-table tbody tr:hover{
+#transaction table tbody tr:hover{
     opacity: 1;
 }
 
-table thead tr th:first-child,
-table tbody tr td:first-child{
+#transaction table thead tr th:first-child,
+#transaction table tbody tr td:first-child{
     border-radius: 0.25rem 0 0 0.25rem;
 }
 
-td.description{
+#transaction table thead tr th:last-child,
+#transaction table tbody tr td:last-child{
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+#transaction td.description{
     color: var(--dark-blue);
 }
 
-td.income{
+#transaction td.income{
     color: #12a454;
 }
 
-td.expense{
+#transaction td.expense{
     color:#e92929;
 }
+
+/* Modal */
+.modal-overlay{
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.24);
+
+    position: fixed;
+    top: 0;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-overlay.active{
+    opacity: 1;
+    visibility: visible;
+    z-index: 999;
+}
+
+.modal{
+    background: #f2f0f5;
+    padding: 2.4rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Form */
+#form{
+    max-width: 500px;
+}
+
+#form h2{
+    margin-top: 0;
+}
+
+#form form input{
+    border: none;
+    border-radius: .25rem;
+    padding: 0.8rem;
+    width: 100%;
+}
+
+#form form .input-group{
+    margin-top: .8rem;
+}
+
+#form form .input-group small{
+    opacity: 0.4;
+}
+
+#form form .input-group.actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#form form .input-group.actions .button,
+#form form .input-group.actions button{
+    width: 48%;
+}
+
 
 /* footer */
 footer{
     text-align: center;
     padding: 4rem 0 2rem;
     color: var(--dark-blue);
-
     opacity: .6;
+}
+
+/* responsive */
+@media (min-width: 800px){
+        html{
+            font-size:87.5%;
+        }
+
+        #balance{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
 }
